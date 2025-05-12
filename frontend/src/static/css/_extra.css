@@ -1999,27 +1999,46 @@ body.dark_theme .page-main-inner .custom-page-wrapper {
 .page-main-inner .custom-page-wrapper h1 {
 	position: relative;
 	display: block;
-	padding-bottom: 10px;
+	padding-bottom: 100px;
 	font-family: 'Facultad', Arial, sans-serif;
-	font-size: 30px;
-	line-height: 40px;
+	font-size: 31px;
+	font-weight: 400;
+	line-height: 1.2;
+	letter-spacing: 0;
 	color: #000;
 }
 
-.page-main-inner .custom-page-wrapper h1,
 .page-main-inner .custom-page-wrapper h2 {
 	position: relative;
 	display: block;
-	padding-bottom: 10px;
+	padding-bottom: 50px;
 	font-family: 'Facultad', Arial, sans-serif;
-	font-size: 30px;
-	line-height: 40px;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 1.2;
+	letter-spacing: 0.01px;
+	color: #026690;
+}
+
+.page-main-inner .custom-page-wrapper h3 {
+	position: relative;
+	display: block;
+	padding-bottom: 50px;
+	font-family: 'Facultad', Arial, sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: 0.01px;
 	color: #000;
 }
 
 body.dark_theme .page-main-inner .custom-page-wrapper h1,
-body.dark_theme .page-main-inner .custom-page-wrapper h2 {
+body.dark_theme .page-main-inner .custom-page-wrapper h3 {
 	color: #fff;
+}
+
+body.dark_theme .page-main-inner .custom-page-wrapper h2 {
+	color: #7BBBBF;
 }
 
 .page-main-inner .custom-page-wrapper h1:after,
