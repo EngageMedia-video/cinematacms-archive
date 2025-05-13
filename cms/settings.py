@@ -420,14 +420,16 @@ TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
     "height": 500,
     "menubar": True,
-    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,"
     "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
     "code,help,wordcount",
     "toolbar": "undo redo | formatselect | "
     "bold italic blocks | alignleft aligncenter "
     "alignright alignjustify | bullist numlist | "
-    "removeformat | help",  
-    "promotion": False
+    "removeformat | help",
+    # Remove content_security_policy config here if site has its own csp
+    "content_security_policy": "default-src 'none'; script-src 'self'; connect-src 'self' blob:; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self';",
+    "promotion": False,
 }
 
 # settings that are related with UX/appearance
