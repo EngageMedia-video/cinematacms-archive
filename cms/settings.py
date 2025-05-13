@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    'allauth.mfa',
+    "allauth.mfa",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -134,7 +134,7 @@ LOGGING = {
         },
     },
 }
-                                 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -144,9 +144,9 @@ DATABASES = {
         "USER": "mediacms",
         "PASSWORD": "mediacms",
         "TEST": {
-          "MIRROR": "default", # mirror - default enables you to work on the database's copy
-          "MIGRATE": False
-        }
+            "MIRROR": "default",  # mirror - default enables you to work on the database's copy
+            "MIGRATE": False,
+        },
     }
 }
 
@@ -248,9 +248,9 @@ ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
 # MFA custom configurations here
 MFA_FORMS = {
-  'authenticate': 'users.forms.CustomAuthenticateForm',
-  'reauthenticate': 'users.forms.CustomReauthenticateTOTPForm',
-  'activate_totp': 'users.forms.CustomActivateTOTPForm'
+    "authenticate": "users.forms.CustomAuthenticateForm",
+    "reauthenticate": "users.forms.CustomReauthenticateTOTPForm",
+    "activate_totp": "users.forms.CustomActivateTOTPForm",
 }
 MFA_RECOVERY_CODE_COUNT = 10
 MFA_RECOVERY_CODE_DIGITS = 12

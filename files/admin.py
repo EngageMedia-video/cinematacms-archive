@@ -144,7 +144,7 @@ class PageAdminForm(forms.ModelForm):
 
 class PageAdmin(admin.ModelAdmin):
     form = PageAdminForm
-
+    
 
 class TopMessageAdmin(admin.ModelAdmin):
     list_display = ("text", "add_date", "active")
