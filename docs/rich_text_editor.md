@@ -10,7 +10,7 @@ TinyMCE is a well-maintained rich text editor that allows users to easily create
 
 ## Usage
 
-To get started, you can type your content in the editor area under the toolbar. TinyMCE will convert your content into sanitized HTML that will be rendered on the pages you're editing. 
+To get started, type your content in the editor area under the toolbar. TinyMCE will convert your content into sanitized HTML that will be rendered on the pages you're editing. 
 
 ### Toolbar Items
 
@@ -32,6 +32,17 @@ The configured TinyMCE editor also contains a menu bar featuring some useful too
 - Insert menu - You can insert a variety of media in your rich text without having to code the content in raw HTML. 
 - Table menu - Allows you to insert an HTML table
 
+### Differences between CKEditor and TinyMCE
+- CKEditor contains more formatting styles by default. TinyMCE also contains all the important formatting styles (found in the Format menu), but CKEditor has more in its menu bar.
+- CKEditor also contains more HTML tags in its toobar dropdown. TinyMCE also has most of the HTML tags that CKEditor has (found in the toolbar or in the menu bar)
+- TinyMCE has an HTML Preview function, which can be found in the View menu.
+- TinyMCE has different styles for its numbered and bullet list.
+- TinyMCE has a Show Blocks function that visualizes the structure of the HTML
+- TinyMCE allows you to easily insert dates (found in Insert->Date/time)
+- TinyMCE makes it easy to insert links and html tables
+- TinyMCE's Format menu has options for different font styles and font sizes
+- TinyMCE has a tidy word count functionality found in the Tools menu
+- TinyMCE contains a lot of keyboard shortcuts which can be found in the Help menu
 
 ## Configuration
 
