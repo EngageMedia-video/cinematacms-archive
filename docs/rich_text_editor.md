@@ -47,3 +47,66 @@ The configured TinyMCE editor also contains a menu bar featuring some useful too
 ## Configuration
 
 The TinyMCE editor is easily configurable. The current configuration can be found in TINYMCE_DEFAULT_CONFIG of `cms/settings.py`. You may consult this ![link](https://django-tinymce.readthedocs.io/en/latest/installation.html#configuration) and the TinyMCE ![documentation](https://www.tiny.cloud/docs/tinymce/latest/) for configuration options. The configuration process usually involves looking at the TinyMCE documentation config options and copying them verbatim in the TINYMCE_DEFAULT_CONFIG variable. 
+
+## Rollback
+
+To go back to CKEditor:
+1. Remove `django-tinymce` from `requirements.txt` and add `django-ckeditor==6.6.1` instead.
+2. Remove `TINYMCE_DEFAULT_CONFIG` in `cms/settings.copying` and add the following:
+```python
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "Custom",
+        "width": "100%",
+        "toolbar_Custom": [
+            ["Styles"],
+            ["Format"],
+            ["Bold", "Italic", "Underline"],
+            ["HorizontalRule"],
+            [
+                "NumberedList",
+                "BulletedList",
+                "-",
+                "Outdent",
+                "Indent",
+                "-",
+                "JustifyLeft",
+                "JustifyCenter",
+                "JustifyRight",
+                "JustifyBlock",
+            ],
+            ["Link", "Unlink"],
+            ["Image"],
+            ["RemoveFormat", "Source"],
+        ],
+        "allowedContent": True,
+    },
+    "extraAllowedContent": "ul(tick-list,box-list,box-list-half,box-list-third) p(emphasis,emphasis-large) span(board-member,box-icon-title,open-tech,video4change,research,skills-build) a(external-link)",
+    }
+```
+3. In `files/admin.py`, import `CKEditorWidget` and add the following line in `PageAdminForm`:
+```python
+from ckeditor.widgets import CKEditorWidget
+
+...
+
+class PageAdminForm(forms.ModelForm):
+	# add the line below
+    description = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Page
+        fields = "__all__"
+        # remove the commented line below
+        # widgets = {
+        #     "description": TinyMCE(),
+        # }
+```
+4. In `templates/cms/page.html`, add the following lines inside the `innercontent` block.
+```python
+{% block innercontent %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+...
+```
