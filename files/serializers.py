@@ -6,6 +6,7 @@ from .models import (
     EncodeProfile,
     HomepagePopup,
     IndexPageFeatured,
+    Language,
     Media,
     MediaCountry,
     MediaLanguage,
@@ -25,6 +26,8 @@ class MediaSerializer(serializers.ModelSerializer):
     thumbnail_url = serializers.SerializerMethodField()
     author_profile = serializers.SerializerMethodField()
     author_thumbnail = serializers.SerializerMethodField()
+    media_language_info = LanguageSerializer(source="media_language", read_only=True)
+
 
     def get_url(self, obj):
         return self.context["request"].build_absolute_uri(obj.get_absolute_url())
@@ -94,10 +97,16 @@ class MediaSerializer(serializers.ModelSerializer):
             "year_produced",
         )
 
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = ["code", "title"]
 
 class SingleMediaSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source="user.username")
     url = serializers.SerializerMethodField()
+    media_language_info = LanguageSerializer(source="media_language", read_only=True)
+
 
     def get_url(self, obj):
         return self.context["request"].build_absolute_uri(obj.get_absolute_url())
