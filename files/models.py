@@ -27,6 +27,9 @@ from . import helpers, lists
 from .methods import is_mediacms_editor, is_mediacms_manager, notify_users, is_media_allowed_type
 from .stop_words import STOP_WORDS
 
+#
+from .language import Language
+
 logger = logging.getLogger(__name__)
 
 RE_TIMECODE = re.compile(r"(\d+:\d+:\d+.\d+)")
@@ -136,13 +139,13 @@ class Media(models.Model):
 
     description = models.TextField("More Information and Credits", blank=True)
     summary = models.TextField("Synopsis", help_text="Maximum 60 words")
-    media_language = models.CharField(
-        max_length=5,
-        blank=True,
-        null=True,
-        default="en",
-        choices=lists.video_languages,
-        db_index=True,
+    media_language = models.ForeignKey(
+    Language,
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name="media_items",
+    verbose_name="Media Language",
     )
     media_country = models.CharField(
         max_length=5,
