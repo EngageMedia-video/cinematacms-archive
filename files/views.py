@@ -125,7 +125,7 @@ def countries(request):
 
 def languages(request):
     context = {}
-    languages = [language[1] for language in lists.video_languages]
+    languages = Language.objects.all().order_by('title') 
     context["languages"] = languages
     return render(request, "cms/languages.html", context)
 
@@ -1626,9 +1626,7 @@ class TopicList(APIView):
 class MediaLanguageList(APIView):
     def get(self, request, format=None):
         languages = (
-            MediaLanguage.objects.exclude(listings_thumbnail=None)
-            .exclude(listings_thumbnail="")
-            .filter()
+            Language.objects.all()
             .order_by("title")
         )
         serializer = MediaLanguageSerializer(
