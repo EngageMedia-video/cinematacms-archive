@@ -19,4 +19,31 @@
 {% include "components/footer.html" %}
 {% endblock %}
 
-{% block bottomimports %}<script src="{% static "js/base.js" %}"></script>{% endblock bottomimports %}
+{% block bottomimports %}
+<script src="{% static "js/base.js" %}"></script>
+
+{# Render MEDIACMS_API_VARS as a hidden JSON script tag (directly) #}
+{% if MEDIACMS_API_VARS %}
+    {{ MEDIACMS_API_VARS|json_script:"mediacms-api-vars-data" }} {# <--- THIS IS THE MAIN REPLACEMENT! #}
+{% endif %}
+
+<script>
+    // Initialize the global MediaCMS object if it doesn't exist
+    window.MediaCMS = window.MediaCMS || {};
+    window.MediaCMS.api = window.MediaCMS.api || {};
+    window.MediaCMS.api.archive = window.MediaCMS.api.archive || {};
+
+    {% if MEDIACMS_API_VARS %}
+        try {
+            // Retrieve JSON data from the hidden script element
+            const apiDataElement = document.getElementById('mediacms-api-vars-data');
+            if (apiDataElement) {
+                const apiData = JSON.parse(apiDataElement.textContent);
+                Object.assign(window.MediaCMS, apiData);
+            }
+        } catch (e) {
+            console.error("Error parsing MEDIACMS_API_VARS in base.html:", e);
+        }
+    {% endif %}
+</script>
+{% endblock bottomimports %}
