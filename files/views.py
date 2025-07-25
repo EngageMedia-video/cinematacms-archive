@@ -62,6 +62,7 @@ from .models import (
     HomepagePopup,
     IndexPageFeatured,
     License,
+    Media,
     MediaLanguage,
     MediaCountry,
     Language,
