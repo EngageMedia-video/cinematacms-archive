@@ -238,7 +238,7 @@ TIME_TO_ACTION_ANONYMOUS = 10 * 60
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*']
-ACCOUNT_EMAIL_VERIFICATION = "optional"  # 'mandatory' 'none'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # 'mandatory' 'none'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_USERNAME_MIN_LENGTH = "4"
 ACCOUNT_ADAPTER = "users.adapter.MyAccountAdapter"
@@ -477,6 +477,11 @@ USE_ROUNDED_CORNERS = True  # Default: rounded corners enabled
 
 # allow option to override the default admin url
 DJANGO_ADMIN_URL = "admin/"
+
+# additional MFA-permission configs
+MFA_REQUIRED_ROLES = ['superuser', 'manager']
+MFA_ENFORCE_ON_PATHS = [f'/{DJANGO_ADMIN_URL}']
+MFA_EXCLUDE_PATHS = ['/fu/', '/api/', '/manage/', '/accounts/']
 
 WHISPER_CPP_DIR, WHISPER_CPP_COMMAND, WHISPER_CPP_MODEL = get_whisper_cpp_paths()
 from .local_settings import *
