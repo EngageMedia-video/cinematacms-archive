@@ -21,22 +21,22 @@ urlpatterns = [
     re_path("^tos$", views.tos, name="terms_of_service"),
     re_path("^creative-commons$", views.creative_commons, name="creative_commons"),
     re_path("^categories$", views.categories, name="categories"),
-    re_path("^members", views.members, name="members"),
-    re_path("^tags", views.tags, name="tags"),
+    re_path("^members$", views.members, name="members"),
+    re_path("^tags$", views.tags, name="tags"),
     re_path("^contact$", views.contact, name="contact"),
     re_path("^countries$", views.countries, name="countries"),
     re_path("^languages$", views.languages, name="languages"),
     re_path("^topics$", views.topics, name="topics"),
     re_path("^history$", views.history, name="history"),
     re_path("^liked$", views.liked_media, name="liked_media"),
-    re_path("^view", views.view_media, name="get_media"),
+    re_path("^view$", views.view_media, name="get_media"),
     re_path("^edit$", views.edit_media, name="edit_media"),
-    re_path("^add_subtitle", views.add_subtitle, name="add_subtitle"),
-    re_path("^edit_subtitle", views.edit_subtitle, name="edit_subtitle"),
-    re_path("^embed", views.embed_media, name="get_embed"),
-    re_path("^upload", views.upload_media, name="upload_media"),
-    re_path("^scpublisher", views.upload_media, name="upload_media"),
-    re_path("^search", views.search, name="search"),
+    re_path("^add_subtitle$", views.add_subtitle, name="add_subtitle"),
+    re_path("^edit_subtitle$", views.edit_subtitle, name="edit_subtitle"),
+    re_path("^embed$", views.embed_media, name="get_embed"),
+    re_path("^upload$", views.upload_media, name="upload_media"),
+    re_path("^scpublisher$", views.upload_media, name="upload_media"),
+    re_path("^search$", views.search, name="search"),
     re_path(
         r"^playlist/(?P<friendly_token>[\w]*)$",
         views.view_playlist,
@@ -47,6 +47,7 @@ urlpatterns = [
         views.view_playlist,
         name="get_playlist",
     ),
+    
     # API VIEWS
     re_path("^api/v1/media$", views.MediaList.as_view()),
     re_path("^api/v1/media/$", views.MediaList.as_view()),
@@ -65,8 +66,6 @@ urlpatterns = [
         r"^api/v1/media/(?P<friendly_token>[\w]*)/actions$",
         views.MediaActions.as_view(),
     ),
-    #    url(r'^api/v1/media/(?P<friendly_token>[\w]*)/subtitless$',
-    #        views.MediaSubtitles.as_view()),
     re_path("^api/v1/categories$", views.CategoryList.as_view()),
     re_path("^api/v1/topics$", views.TopicList.as_view()),
     re_path("^api/v1/languages$", views.MediaLanguageList.as_view(), name='api_get_languages'),
@@ -90,7 +89,7 @@ urlpatterns = [
     ),
     re_path("^api/v1/user/action/(?P<action>[\w]*)$", views.UserActions.as_view()),
     re_path("^fu/", include(("uploader.urls", "uploader"), namespace="uploader")),
-    # TODO: https://site.com/channel/UCwobzUc3z-0PrFpoRxNszXQ channel
+    
     # ADMIN VIEWS
     re_path("^api/v1/manage_media$", management_views.MediaList.as_view()),
     re_path("^api/v1/manage_comments$", management_views.CommentList.as_view()),
@@ -106,8 +105,8 @@ urlpatterns = [
     re_path("^api/v1/topmessage/$", views.TopMessageList.as_view()),
     re_path("^api/v1/indexfeatured/$", views.IndexPageFeaturedList.as_view()),
     re_path("^api/v1/homepagepopup/$", views.HomepagePopupList.as_view()),
-    ################################
-    # These are URLs related with the migration of plumi (plumi.org) systems...
+    
+    # Old URLs related to plumi (plumi.org)
     re_path(
         r"^Members/(?P<user>[\w.@-]*)/videos/(?P<video>[\w.@-]*)$",
         views.view_old_media,
@@ -128,17 +127,14 @@ urlpatterns = [
         views.embed_old_media,
         name="embed_old_media",
     ),
-    ################################
+    
+    # Page and TinyMCE upload handlers
     re_path("^(?P<slug>[\w.-]*)$", views.view_page, name="get_page"),
-    # TinyMCE upload handlers
     path("tinymce/upload/", tinymce_handlers.upload_image, name="tinymce_upload_image"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# urlpatterns = format_suffix_patterns(urlpatterns)
-
-
+# Handle media serving during development
 if settings.DEBUG:
-    # Fixed: removed leading slash and removed all duplicate patterns
     urlpatterns += [
         re_path(
             r"^media/(?P<path>.*)$",  # NO leading slash
@@ -147,5 +143,5 @@ if settings.DEBUG:
                 "document_root": settings.MEDIA_ROOT,
             },
         ),
-        # ALL duplicate playlist patterns REMOVED
     ]
+
