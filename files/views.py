@@ -1626,15 +1626,10 @@ class TopicList(APIView):
 
 class MediaLanguageList(APIView):
     def get(self, request, format=None):
-        languages = (
-            Language.objects.all()
-            .order_by("title")
-        )
-        serializer = MediaLanguageSerializer(
-            languages, many=True, context={"request": request}
-        )
-        ret = serializer.data
-        return Response(ret)
+        # Dynamically load languages from the database
+        languages = Language.objects.all().order_by('title')
+        serializer = MediaLanguageSerializer(languages, many=True, context={"request": request})
+        return Response(serializer.data)
 
 
 class MediaCountryList(APIView):
