@@ -8,9 +8,9 @@ const MediaCMS = {
 	features: require("./installation/features.config.js"),
 };
 
-MediaCMS.api.topics = "/topics";
-MediaCMS.api.languages = "/languages";
-MediaCMS.api.countries = "/countries";
+MediaCMS.api.topics = "/api/v1/topics";
+MediaCMS.api.languages = "/api/v1/languages";
+MediaCMS.api.countries = "/api/v1/countries";
 
 MediaCMS.url.topics = "./topics.html";
 MediaCMS.url.languages = "./languages.html";
