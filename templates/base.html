@@ -19,4 +19,13 @@
 {% include "components/footer.html" %}
 {% endblock %}
 
-{% block bottomimports %}<script src="{% static "js/base.js" %}"></script>{% endblock bottomimports %}
+{% block bottomimports %}
+<script src="{% static "js/base.js" %}"></script>
+
+<script>
+    // 
+    window.MediaCMS = window.MediaCMS || {};
+    window.MediaCMS.api = window.MediaCMS.api || {};
+    window.MediaCMS.api.archive = window.MediaCMS.api.archive || {};
+</script>
+{% endblock bottomimports %}
