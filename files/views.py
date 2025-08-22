@@ -1,6 +1,5 @@
 import csv
 import json
-from cms.permissions import user_requires_mfa
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -64,8 +63,9 @@ from .models import (
     IndexPageFeatured,
     License,
     Media,
-    MediaCountry,
     MediaLanguage,
+    MediaCountry,
+    Language,
     Page,
     Playlist,
     PlaylistMedia,
@@ -126,7 +126,7 @@ def countries(request):
 
 def languages(request):
     context = {}
-    languages = [language[1] for language in lists.video_languages]
+    languages = Language.objects.all().order_by('title') 
     context["languages"] = languages
     return render(request, "cms/languages.html", context)
 
@@ -146,12 +146,10 @@ def manage_users(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect("/")
     
-    # MFA check
-    if user_requires_mfa(request.user) and not is_mfa_enabled(request.user):
+    if request.user.is_superuser and not is_mfa_enabled(request.user):
         return HttpResponseRedirect('/accounts/2fa/totp/activate')
 
-    # Hard config -> ensure superuser / manager only have access
-    if not (request.user.is_superuser or request.user.is_manager):
+    if request.user.is_manager or request.user.is_editor:
         return HttpResponseRedirect("/")
 
     context = {}
@@ -162,12 +160,10 @@ def manage_media(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect("/")
 
-    # MFA check
-    if user_requires_mfa(request.user) and not is_mfa_enabled(request.user):
+    if request.user.is_superuser and not is_mfa_enabled(request.user):
         return HttpResponseRedirect('/accounts/2fa/totp/activate')
 
-     # Hard config -> ensure superuser / manager / editor only have access
-    if not (request.user.is_superuser or request.user.is_manager or request.user.is_editor):
+    if request.user.is_manager or request.user.is_editor:
         return HttpResponseRedirect("/")
 
     context = {}
@@ -178,10 +174,10 @@ def manage_comments(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect("/")
 
-    if user_requires_mfa(request.user) and not is_mfa_enabled(request.user):
+    if request.user.is_superuser and not is_mfa_enabled(request.user):
         return HttpResponseRedirect('/accounts/2fa/totp/activate')
 
-    if not (request.user.is_superuser or request.user.is_manager or request.user.is_editor):
+    if request.user.is_manager or request.user.is_editor:
         return HttpResponseRedirect("/")
 
     context = {}
@@ -1630,17 +1626,10 @@ class TopicList(APIView):
 
 class MediaLanguageList(APIView):
     def get(self, request, format=None):
-        languages = (
-            MediaLanguage.objects.exclude(listings_thumbnail=None)
-            .exclude(listings_thumbnail="")
-            .filter()
-            .order_by("title")
-        )
-        serializer = MediaLanguageSerializer(
-            languages, many=True, context={"request": request}
-        )
-        ret = serializer.data
-        return Response(ret)
+        # Dynamically load languages from the database
+        languages = Language.objects.all().order_by('title')
+        serializer = MediaLanguageSerializer(languages, many=True, context={"request": request})
+        return Response(serializer.data)
 
 
 class MediaCountryList(APIView):
