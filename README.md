@@ -18,20 +18,38 @@ Our goal is to make these Cinemata-specific integrations and improvements to Med
 
 ---
  
-### Potential Use Cases for CinemataCMS
-CinemataCMS can serve a wide range of organizations and initiatives that need to manage, showcase, and distribute video content with a focus on social impact:
+## Tools for Community Archiving & Human Rights Documentation
 
-- **Educational institutions** - Universities, film schools, and educational programs can use CinemataCMS for teaching references, student submissions, and creating accessible archives of instructional materials
-- **Community archiving initiatives** - Cultural and community organisations working to preserve local stories and historical footage
-- **Film festivals** - Both virtual and physical film festivals looking for platforms to showcase submissions and curated collections
-- **Independent media organisations** - News outlets, documentary collectives, and citizen journalism projects requiring secure hosting for sensitive content
-- **Human rights documentation** - NGOs and advocacy groups documenting human rights situations in sensitive contexts
-- **Cultural heritage preservation** - Museums, libraries, and archives digitising and showcasing audiovisual cultural heritage
-- **Environmental advocacy** - Organisations using video to document environmental issues and climate change impacts
-- **Research institutions** - Academic and scientific organisations sharing visual research outputs and findings
-- **Digital storytelling projects** - Initiatives promoting digital storytelling as a tool for empowerment and social change
+CinemataCMS could provide a platform for organizations working to document, preserve, and seek justice for human rights violations through crowdsourced video evidence. 
 
-The platform's emphasis on privacy, security, and community engagement makes it particularly suitable for projects prioritising ethical content management and user protection. 
+### Areas for Enhancement Intended for Human Rights Work
+
+**Evidence Management & Legal Workflows**
+- **Metadata extraction**: Automatic extraction of location, date, time, and device information from uploaded media to establish provenance
+- **Chain of custody tracking**: Contributor, owner, and consent management with verification workflows
+- **Content categorization**: Organized tagging system for violence types, source platforms, and incident classification
+- **Geolocation mapping**: Interactive location pinning for incident documentation and pattern analysis
+
+**Community-Driven Documentation**
+- **Crowdsourced submissions**: Support for both direct witness uploads and trusted network contributions
+- **Multi-language interface**: Bilingual forms and metadata collection to serve diverse communities
+- **Content verification**: Contributor role management with verification person assignments
+- **Consent frameworks**: Built-in consent collection for legal sharing and distribution
+
+**Technical Capabilities for Investigation Support**
+- **Content analysis tools**: AI-powered transcription and content filtering capabilities
+- **Secure archival**: Privacy-focused hosting with controlled access for sensitive documentation
+- **Export functionality**: Structured data export for legal proceedings and formal investigations
+
+### If developed, CinemataCMS-Archive Could be Ideal for Organizations Working On
+
+- **Human rights documentation** - NGOs and advocacy groups requiring secure, systematic evidence collection
+- **Transitional justice initiatives** - Truth commissions and accountability mechanisms
+- **Community archiving** - Grassroots movements preserving critical historical moments  
+- **Legal advocacy** - Organizations building cases for formal justice proceedings
+- **Crisis response** - Rapid deployment for documenting emerging human rights situations
+
+*With these proposed enhancements, CinemataCMS could transform community-generated content into structured, legally-relevant documentation while prioritizing contributor safety and consent - making it an invaluable tool for organizations seeking justice and accountability.*
 
 ### Screenshots
 
