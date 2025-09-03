@@ -8,6 +8,7 @@ Our goal is to make these Cinemata-specific integrations and improvements to Med
 - [Core MediaCMS features](https://github.com/mediacms-io/mediacms)
 - Cinemata-specific enhancements:
   - [Multi-Factor Authentication](https://github.com/EngageMedia-video/cinematacms/blob/main/docs/security/mfa_authentication.md)
+  - X-accel redirect implementation for greater security and optimisation
   - Custom CSS and UI components for a unique, tailored look distinct from baseline MediaCMS
   - Featured video and playlists on the front page
   - Customised playlists and embedding options on the front page
