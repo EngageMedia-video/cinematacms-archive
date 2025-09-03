@@ -65,7 +65,7 @@ As root, clone the repository on /home/cinemata and run install.sh:
 ```
 # cd /home
 # mkdir cinemata && cd cinemata
-# git clone -b release/cinemata-2.0-beta https://github.com/EngageMedia-video/cinematacms.git cinematacms && cd cinematacms
+# git clone -b v2.0.1 https://github.com/EngageMedia-video/cinematacms-archive.git cinematacms && cd cinematacms
 # chmod +x install.sh
 # ./install.sh
 ```
